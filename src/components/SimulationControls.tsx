@@ -19,30 +19,22 @@ const SimulationControls = () => {
   } = useDisruption();
 
   return (
-    <div className="gradient-header px-4 py-3">
+    <div className="bg-[#2c2c2c] border-b border-[#3e3e3e] px-4 py-2">
       <div className="max-w-[1600px] mx-auto">
-        {/* Top row - title and sync */}
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-3">
-            <h1 className="text-primary-foreground font-display text-lg font-bold tracking-tight">
-              ✈️ Airline Disruption Management — Single Source of Truth
-            </h1>
-          </div>
-          <div className="flex items-center gap-3">
-            {flight.isSyncing ? (
-              <span className="flex items-center gap-1.5 text-xs font-medium bg-warning/20 text-warning px-3 py-1.5 rounded-full">
-                <Loader2 className="w-3 h-3 animate-spin" /> Syncing channels...
-              </span>
-            ) : (
-              <span className="flex items-center gap-1.5 text-xs font-medium bg-success/20 text-success px-3 py-1.5 rounded-full">
-                <CheckCheck className="w-3 h-3" /> All channels synchronized
-              </span>
-            )}
-          </div>
-        </div>
-
         {/* Controls row */}
         <div className="flex items-center gap-2 flex-wrap">
+          {/* Sync indicator */}
+          {flight.isSyncing ? (
+            <span className="flex items-center gap-1.5 text-[11px] font-medium bg-yellow-500/20 text-yellow-400 px-2.5 py-1 rounded-full mr-2">
+              <Loader2 className="w-3 h-3 animate-spin" /> Syncing…
+            </span>
+          ) : (
+            <span className="flex items-center gap-1.5 text-[11px] font-medium bg-emerald-500/20 text-emerald-400 px-2.5 py-1 rounded-full mr-2">
+              <CheckCheck className="w-3 h-3" /> Synced
+            </span>
+          )}
+
+          <div className="w-px h-5 bg-[#3e3e3e]" />
           <Button
             size="sm"
             variant="secondary"
@@ -75,22 +67,16 @@ const SimulationControls = () => {
           </Button>
 
           <div className="flex items-center gap-2 ml-auto">
-            <span className="text-xs text-primary-foreground/80">Speed: {simulationSpeed}x</span>
+            <span className="text-[11px] text-[#b3b3b3]">Speed: {simulationSpeed}x</span>
             <Slider
               value={[simulationSpeed]}
               onValueChange={([v]) => setSimulationSpeed(v)}
               min={1}
               max={5}
               step={1}
-              className="w-24"
+              className="w-20"
             />
           </div>
-        </div>
-
-        {/* Comparison metrics */}
-        <div className="flex items-center gap-6 mt-2 text-xs text-primary-foreground/70">
-          <span>📊 <strong className="text-primary-foreground">Old System:</strong> 65 min to sync | 28% call airline</span>
-          <span>✨ <strong className="text-primary-foreground">New System:</strong> 2 min to sync | 4% call airline</span>
         </div>
       </div>
     </div>

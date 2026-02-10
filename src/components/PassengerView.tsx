@@ -13,13 +13,9 @@ const PassengerView = () => {
   const today = new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
 
   return (
-    <div className="flex flex-col items-center py-6 px-4 h-full">
-      <h2 className="font-display text-sm font-bold text-muted-foreground uppercase tracking-widest mb-4">
-        Passenger Mobile App
-      </h2>
-
-      {/* Phone frame */}
-      <div className="phone-frame flex flex-col h-[680px]">
+    <div className="flex flex-col h-full">
+      {/* Scrollable phone content – no extra wrapper needed inside the artboard */}
+      <div className="flex flex-col flex-1 overflow-hidden">
         <div className="phone-notch" />
 
         {/* Scrollable content */}
@@ -136,19 +132,19 @@ const PassengerView = () => {
             )}
           </AnimatePresence>
         </div>
+      </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-border bg-card px-3 py-2 flex gap-2">
-          <Button variant="outline" size="sm" className="flex-1 text-xs gap-1">
-            <Phone className="w-3 h-3" /> Call Center
-          </Button>
-          <Button variant="outline" size="sm" className="flex-1 text-xs gap-1">
-            <List className="w-3 h-3" /> Timeline
-          </Button>
-          <Button size="sm" className="flex-1 text-xs gap-1">
-            <ArrowRightLeft className="w-3 h-3" /> Rebook
-          </Button>
-        </div>
+      {/* Bottom bar */}
+      <div className="border-t border-border bg-card px-3 py-2 flex gap-2 shrink-0">
+        <Button variant="outline" size="sm" className="flex-1 text-xs gap-1">
+          <Phone className="w-3 h-3" /> Call Center
+        </Button>
+        <Button variant="outline" size="sm" className="flex-1 text-xs gap-1">
+          <List className="w-3 h-3" /> Timeline
+        </Button>
+        <Button size="sm" className="flex-1 text-xs gap-1">
+          <ArrowRightLeft className="w-3 h-3" /> Rebook
+        </Button>
       </div>
     </div>
   );
